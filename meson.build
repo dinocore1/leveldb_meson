@@ -24,7 +24,7 @@ table_src = ['table/block.cc', 'table/block_builder.cc', 'table/filter_block.cc'
 cpp_args = []
 port_src = []
 
-if meson.is_cross_build() and host_machine == 'android'
+if meson.is_cross_build() host.name() == 'android'
   port_src = [ 'port/port_posix.cc' ]
   cpp_args = [ '-DOS_ANDROID' , '-DLEVELDB_PLATFORM_POSIX', '-D_REENTRANT', '-fno-builtin-memcmp' ]
 endif

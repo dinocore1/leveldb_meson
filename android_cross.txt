@@ -1,0 +1,7 @@
+name = 'android'
+c = '/home/paul/apps/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc'
+cpp = '/home/paul/apps/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-g++'
+ar = '/home/paul/apps/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar'
+strip = '/home/paul/apps/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-strip'
+
+root = '/home/paul/apps/android-ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64'
