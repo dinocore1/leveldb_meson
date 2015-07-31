@@ -24,9 +24,19 @@ table_src = ['table/block.cc', 'table/block_builder.cc', 'table/filter_block.cc'
 cpp_args = []
 port_src = []
 
-if meson.is_cross_build() host.name() == 'android'
-  port_src = [ 'port/port_posix.cc' ]
-  cpp_args = [ '-DOS_ANDROID' , '-DLEVELDB_PLATFORM_POSIX', '-D_REENTRANT', '-fno-builtin-memcmp' ]
+if meson.is_cross_build()
+  if host.name() == 'android'
+    port_src = [ 'port/port_posix.cc' ]
+    cpp_args = [ '-DOS_ANDROID' , '-DLEVELDB_PLATFORM_POSIX', '-D_REENTRANT', '-fno-builtin-memcmp' ]
+  endif
+else
+  if host.name() == 'linux'
+    port_src = [ 'port/port_posix.cc' ]
+    cpp_args = [ '-DOS_LINUX', '-DLEVELDB_PLATFORM_POSIX' ]
+  elif host.name() == 'darwin'
+    port_src = [ 'port/port_posix.cc' ]
+    cpp_args = [ '-DOS_MACOSX', '-DLEVELDB_PLATFORM_POSIX' ]
+  endif
 endif
 
 pub_incdir = include_directories('include')
