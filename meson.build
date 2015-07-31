@@ -21,10 +21,18 @@ table_src = ['table/block.cc', 'table/block_builder.cc', 'table/filter_block.cc'
 'table/format.cc', 'table/iterator.cc', 'table/merger.cc', 'table/table.cc',
 'table/table_builder.cc', 'table/two_level_iterator.cc' ]
 
+cpp_args = []
+port_src = []
+
+if meson.is_cross_build() and host_machine == 'android'
+  port_src = [ 'port/port_posix.cc' ]
+  cpp_args = [ '-DOS_ANDROID' , '-DLEVELDB_PLATFORM_POSIX', '-D_REENTRANT', '-fno-builtin-memcmp' ]
+endif
+
 pub_incdir = include_directories('include')
 
-leveldb_lib = build_target('leveldb', [db_src, util_src, table_src],
+leveldb_lib = build_target('leveldb', [db_src, util_src, table_src, port_src],
   include_directories : pub_incdir,
   target_type : libtype,
-  cpp_args : ['-DOS_LINUX', '-DLEVELDB_PLATFORM_POSIX']
+  cpp_args : cpp_args
 )
