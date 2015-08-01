@@ -39,10 +39,12 @@ else
   endif
 endif
 
-pub_incdir = include_directories('include')
+incdir = include_directories('include')
 
 leveldb_lib = build_target('leveldb', [db_src, util_src, table_src, port_src],
-  include_directories : pub_incdir,
+  include_directories : incdir,
   target_type : libtype,
   cpp_args : cpp_args
 )
+
+dep = declare_dependency(link_with : leveldb_lib, include_directories : incdir)
